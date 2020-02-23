@@ -8,11 +8,14 @@
      createElement(name)
      createTextNode(text)
      appendChild(node)
+
+     parentNode.replaceChild(new Child, old Child)
+     element.removeChild(child)
      */
    -->
   </head>
   <body>
-    <p id="result" style="color:green">getElementById + innnerText</p>
+    <p id="result" style="color:green">appendChild</p>
     <ul id="list">
     </ul>
     <input type="button" value="追加" onclick="appendElement();">
@@ -26,6 +29,74 @@
           li.appendChild(text);
           // idがlistの要素取得
           var list = document.getElementById('list');
+          // idがlistのulタグに、liを追加
+          list.appendChild(li);
+        }
+    </script>
+
+    <p id="res" style="color:green">replaceChild</p>
+    <ul id="list1">
+      <li id="oldList">古い要素です</li>
+    </ul>
+    <input type="button" value="置換" onclick="replace();">
+    <script type="text/javascript">
+        function replace(){
+          // 空のli要素を作成
+          var newList = document.createElement('li');
+          // 生成したNodeにid属性"newList"を付与
+          newList.setAttribute('id','newList');
+          // テキストノードを生成
+          var newText = document.createTextNode('新しい要素です');
+          // 生成したテキストノードを空のli要素の子ノードとして代入
+          newList.appendChild(newText);
+          // 置換前の変数oldListの参照を変数oldListに代入
+          var oldList = document.getElementById('oldList');
+          // 親Node(ul)の参照変数parentNodeに代入
+          var parentNode = oldList.parentNode;
+          // 既存Node oldListを、新規に生成したli要素newListと置換
+          parentNode.replaceChild(newList, oldList);
+        }
+    </script>
+
+    <p id="resrm" style="color:green">removeChild</p>
+    <ul id="list2">
+      <li>要素1</li>
+      <li>要素2</li>
+      <li>要素3</li>
+      <li>要素4</li>
+      <li>要素5</li>
+    </ul>
+    <input type="button" value="削除" onclick="remove();">
+    <script type="text/javascript">
+        function remove(){
+          var parentElement = document.getElementById('list2');
+          var lists = parentElement.getElementsByTagName('li');
+          var removeIndex = lists.length - 1;
+          parentElement.removeChild(lists[removeIndex]);
+        }
+    </script>
+
+    <!--
+    ユーザーがTextBoxに文字列入力後、ボタンを押すと、入力文字がリストに追加され、表示される
+    -->
+
+    <p id="resAdd" style="color:green">appendChild</p>
+    <ul id="listAdd">
+    </ul>
+    <input id="inputStr" type="text">
+    <input type="button" value="追加" onclick="addStrList();">
+    <script type="text/javascript">
+        function addStrList(){
+          // inputStrの要素を取得
+          var inputStr = document.getElementById('inputStr').value;
+          // liタグの要素を生成
+          var li = document.createElement('li');
+          // TextNodeを生成
+          var text = document.createTextNode(inputStr);
+          // li タグの要素に、TextNode textを追加
+          li.appendChild(text);
+          // idがlistの要素取得
+          var list = document.getElementById('listAdd');
           // idがlistのulタグに、liを追加
           list.appendChild(li);
         }
