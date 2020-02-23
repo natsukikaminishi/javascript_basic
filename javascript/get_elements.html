@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの学習</title>
+    <!--
+    // DOM (Document Object Model)
+    /*
+    window // ブラウザを操作するための最上位
+      -screen // ディスプレイの情報
+      -document // コンテンツの保持、操作
+        -forms // Formに関する情報
+          -elements // 要素
+        -anchor // <a>
+        -images // 画像関係
+      -location // 現在表示url
+      -navigator // ブラウザ名やversion
+      -history // ブラウザ履歴の操作
+     */
+
+    /*
+    document.getElementById(id)
+    .innerText
+    document.getElementsByTagName(name)
+    document.getElementsByName(name)
+    document.getElementsByClassName(name)
+     */
+   -->
+  </head>
+  <body>
+    <p id="result" style="color:blue">getElementById + innnerText</p>
+    <input type="button" value="取得" onclick="show();">
+    <script type="text/javascript">
+        function show(){
+          var result = document.getElementById('result');
+          console.log(result);
+          console.log(result.innerText);
+        }
+    </script>
+
+    <p id="date" style="color:blue">getElementByIdによる書き換え</p>
+    <input type="button" value="日付更新" onclick="change();">
+    <script type="text/javascript">
+        function change(){
+          var date = document.getElementById('date');
+          console.log(date.innerText);
+          var nowDate = new Date();
+          date.innerText = nowDate.toLocaleString();
+        }
+    </script>
+
+    <p style="color:blue">getElementsByTagNameによる配列取得</p>
+    <div>要素1</div>
+      <p>要素2</p>
+    <div>要素3</div>
+      <span>要素4</span>
+    <div>要素5</div>
+
+    <input type="button" value="取得" onclick="showElements();">
+
+    <script>
+      function showElements(){
+        var elements = document.getElementsByTagName('div');
+        for(var i = 0; i < elements.length; i++){
+          console.log(elements[i].innerText);
+        }
+      }
+    </script>
+
+    <p style="color:blue">Nameによる配列取得</p>
+    <input name="ret" type="text">
+    <input type="button" value="取得" onclick="getElements();">
+
+    <script>
+      function getElements(){
+        var elementsByName = document.getElementsByName('ret');
+        console.log(elementsByName[0].value);
+      }
+    </script>
+
+    <p style="color:blue">Classによる配列取得</p>
+      <ul>
+        <li class="foo">要素1</li>
+        <li class="bar">要素2</li>
+        <li class="foo">要素3</li>
+        <li>要素4</li>
+        <li class="bar">要素5</li>
+      </ul>
+
+    <input type="button" value="取得" onclick="getClass();">
+
+    <script>
+      function getClass(){
+        var elements = document.getElementsByClassName('foo');
+        for(var i = 0; i < elements.length; i++){
+          console.log(elements[i].innerText);
+        }
+      }
+    </script>
+
+  </body>
+</html>
