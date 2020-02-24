@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScriptの学習</title>
+    <!--
+     Event Handler
+   -->
+  </head>
+  <body>
+    <p id="res1" style="color:red">onclick</p>
+    <!-- <input type="button" value="クリックしてください" onclick="console.log('イベント発生');"> -->
+    <input type="button" value="クリックしてください" onclick="buttonClick();">
+    <script type="text/javascript">
+        function buttonClick(){
+          console.log('イベント発生');
+        }
+    </script>
+
+    <br>
+
+    <input id="btn1" type="button" value="クリックしてください(property)">
+    <script type="text/javascript">
+        document.getElementById('btn1').onclick =
+        function(){
+          console.log('イベント発生');
+        }
+    </script>
+
+    <script>
+      window.onload =
+      function(){
+        console.log('loadイベント発生');
+      }
+    </script>
+
+    <br>
+    <p id="res2" style="color:red">addEventLisner</p>
+    <input id="btn2" type="button" value="イベント発生">
+    <script>
+    window.onload =
+    function(){
+      var e = document.getElementById('btn2');
+      e.addEventListener('click', function(){
+        console.log('イベント発生(addEventLisner)');
+      });
+
+      e.addEventListener('click', function(){
+        alert('イベント発生(addEventLisner)');
+      });
+    }
+    </script>
+
+    <!-- text boxに文字列を入力し、ボタンを押すとリストに追加されていく -->
+    <p id="res3" style="color:red">addEventLisner</p>
+    <ul id="list">
+    </ul>
+    <input id="str3" type="text">
+    <input id="btn3" type="button" value="追加">
+    <script>
+    // DOMContentLoaded: HTMLの読み込み時に発生
+    document.addEventListener('DOMContentLoaded', function(){
+      // idがbtn3の要素がクリックされたときに、関数appendElement()を呼び出す処理を
+      // addEventListenerを使って実装する
+      var e = document.getElementById('btn3');
+      e.addEventListener('click', function(){
+        // liタグの要素を生成
+        var li = document.createElement('li');
+        // TextNodeを生成
+        var text = document.createTextNode(document.getElementById('str3').value);
+        // li タグの要素に、TextNode textを追加
+        li.appendChild(text);
+        // idがlistの要素取得
+        var list = document.getElementById('list');
+        // idがlistのulタグに、liを追加
+        list.appendChild(li);
+      });
+    });
+    </script>
+
+
+  </body>
+</html>
